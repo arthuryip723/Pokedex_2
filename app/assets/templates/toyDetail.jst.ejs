@@ -1,0 +1,20 @@
+<div class="detail">
+  <img src="<%= toy.get("image_url") %>">
+  <br>
+  Name: <%= toy.get("name") %>
+  <br>
+  Happiness: <%= toy.get("happiness") %>
+  <br>
+  Price: <%= toy.get("price") %>
+  <select>
+    <% pokes.each(function(pokemon){ %>
+      <option id="<%= pokemon.get("id") %>"
+        <% if(pokemon.get("id") === toy.get("pokemon_id")){ %>
+          <%= "selected" %>
+        <% } %>
+      >
+        <%= pokemon.get("name") %>
+      </option>
+    <% }); %>
+  </select>
+</div>

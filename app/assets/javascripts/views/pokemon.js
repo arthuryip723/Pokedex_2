@@ -117,20 +117,22 @@ Pokedex.Views.Pokemon = Backbone.View.extend({
     // this.$pokeDetail.find($('ul.toys')).append($li);
 
     var content = JST['toyListItem']({ toy: toy });
-    this.$pokeDetail.find($('ul.toys')).append($(content));
+    this.$pokeDetail.find($('ul.toys')).append(content);
   },
 
   renderToyDetail: function (toy) {
-    var $detail = $("<div class='detail'>");
-
-    $detail.html(
-      "<img src='" + toy.escape('image_url') + "'>" + "<br>" +
-      "Name: " + toy.escape('name') + "<br>" +
-      "Happiness: " + toy.escape('happiness') + "<br>" +
-      "Price: " + toy.escape('price')
-    );
-
-    this.$toyDetail.html($detail);
+    // var $detail = $("<div class='detail'>");
+    //
+    // $detail.html(
+    //   "<img src='" + toy.escape('image_url') + "'>" + "<br>" +
+    //   "Name: " + toy.escape('name') + "<br>" +
+    //   "Happiness: " + toy.escape('happiness') + "<br>" +
+    //   "Price: " + toy.escape('price')
+    // );
+    //
+    // this.$toyDetail.html($detail);
+    var content = JST['toyDetail']({ toy: toy, pokes: this.pokes });
+    this.$toyDetail.html(content);
   },
 
   selectToyFromList: function (event) {
