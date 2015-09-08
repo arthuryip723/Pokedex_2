@@ -15,7 +15,6 @@ Pokedex.Views.PokemonDetail = Backbone.View.extend({
   },
 
   selectToyFromList: function (e) {
-    // alert("hi")
     var $li = $(e.currentTarget);
     // var selectedtoy = this.model.toys().get($li.data("toy-id"));
     // var view = new Pokedex.Views.ToyDetail({ model: selectedtoy });
