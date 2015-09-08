@@ -6,6 +6,7 @@
   Happiness: <%= toy.get("happiness") %>
   <br>
   Price: <%= toy.get("price") %>
+  <% if (typeof pokes !== "undefined") { %>
   <select>
     <% pokes.each(function(pokemon){ %>
       <option id="<%= pokemon.get("id") %>"
@@ -17,4 +18,5 @@
       </option>
     <% }); %>
   </select>
+  <% } %>
 </div>

@@ -21,11 +21,32 @@ Pokedex.Views.PokemonIndex = Backbone.View.extend({
 
   refreshPokemon: function () {
     this.pokes.fetch();
-  }
+  },
 
-  // events: {
-  //   "add": "addPokemonToList"
-  // }
+  selectPokemonToList: function (e) {
+    // alert("here");
+    var $li = $(e.currentTarget);
+
+    var selectedpokemon = this.pokes.get($li.data("id"));
+    // console.log(selectedpokemon.get('name'));
+    // debugger
+    // var view = new Pokedex.Views.PokemonDetail({ model: selectedpokemon, el: "#pokedex .pokemon-detail"});
+    var view = new Pokedex.Views.PokemonDetail({ model: selectedpokemon });
+    // debugger
+    // debugger
+
+    $("#pokedex .pokemon-detail").html(view.$el);
+    // view.render();
+    selectedpokemon.fetch();
+    // debugger
+    // console.log($("#pokedex .pokemon-detail").first() === view.$el)
+    // $("#pokedex .pokemon-detail").html(view.render().$el);
+
+  },
+
+  events: {
+    "click li": "selectPokemonToList"
+  },
 
 
 })
