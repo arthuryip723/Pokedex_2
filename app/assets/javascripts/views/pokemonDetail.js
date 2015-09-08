@@ -17,12 +17,12 @@ Pokedex.Views.PokemonDetail = Backbone.View.extend({
   selectToyFromList: function (e) {
     // alert("hi")
     var $li = $(e.currentTarget);
-    var selectedtoy = this.model.toys().get($li.data("toy-id"));
-    var view = new Pokedex.Views.ToyDetail({ model: selectedtoy });
-
-    $("#pokedex .toy-detail").html(view.$el);
-    view.render();
-
+    // var selectedtoy = this.model.toys().get($li.data("toy-id"));
+    // var view = new Pokedex.Views.ToyDetail({ model: selectedtoy });
+    //
+    // $("#pokedex .toy-detail").html(view.$el);
+    // view.render();
+    Backbone.history.navigate("pokemon/" + $li.data("pokemon-id") + "/toys/" + $li.data("toy-id"), { trigger: true });
   },
 
   events: {

@@ -1,14 +1,14 @@
 Pokedex.Views.PokemonIndex = Backbone.View.extend({
 
   initialize: function () {
-    this.pokes = new Pokedex.Collections.Pokemon();
-    this.listenTo(this.pokes, "sync", this.render);
-    this.listenTo(this.pokes, "add", this.addPokemonToList);
+    this.collection = new Pokedex.Collections.Pokemon();
+    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "add", this.addPokemonToList);
   },
 
   render: function () {
     this.$el.empty();
-    this.pokes.each(function (pokemon) {
+    this.collection.each(function (pokemon) {
       this.addPokemonToList(pokemon);
     }.bind(this));
   },
@@ -19,33 +19,26 @@ Pokedex.Views.PokemonIndex = Backbone.View.extend({
     this.$el.append(content);
   },
 
-  refreshPokemon: function () {
-    this.pokes.fetch();
+  refreshPokemon: function (callback) {
+    // debugger
+    this.collection.fetch({success: callback});
   },
 
-  selectPokemonToList: function (e) {
+  selectPokemonFromList: function (e) {
     // alert("here");
     var $li = $(e.currentTarget);
 
-    var selectedpokemon = this.pokes.get($li.data("id"));
-    // console.log(selectedpokemon.get('name'));
-    // debugger
-    // var view = new Pokedex.Views.PokemonDetail({ model: selectedpokemon, el: "#pokedex .pokemon-detail"});
-    var view = new Pokedex.Views.PokemonDetail({ model: selectedpokemon });
-    // debugger
-    // debugger
-
-    $("#pokedex .pokemon-detail").html(view.$el);
-    // view.render();
-    selectedpokemon.fetch();
-    // debugger
-    // console.log($("#pokedex .pokemon-detail").first() === view.$el)
-    // $("#pokedex .pokemon-detail").html(view.render().$el);
-
+    // var selectedpokemon = this.collection.get($li.data("id"));
+    // var view = new Pokedex.Views.PokemonDetail({ model: selectedpokemon });
+    //
+    // $("#pokedex .pokemon-detail").html(view.$el);
+    // // view.render();
+    // selectedpokemon.fetch();
+    Backbone.history.navigate("pokemon/" + $li.data("id"), { trigger: true });
   },
 
   events: {
-    "click li": "selectPokemonToList"
+    "click li": "selectPokemonFromList"
   },
 
 
