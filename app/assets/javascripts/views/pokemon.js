@@ -25,15 +25,20 @@ Pokedex.Views.Pokemon = Backbone.View.extend({
   },
 
   addPokemonToList: function (pokemon) {
-    var $li = $("<li class='poke-list-item'>");
-    $li.data('id', pokemon.escape('id'));
+    // var $li = $("<li class='poke-list-item'>");
+    // $li.data('id', pokemon.escape('id'));
+    //
+    // $li.html(
+    //   "Name: " + pokemon.escape('name') + "<br>" +
+    //   "Poke Type: " + pokemon.escape('poke_type')
+    // );
 
-    $li.html(
-      "Name: " + pokemon.escape('name') + "<br>" +
-      "Poke Type: " + pokemon.escape('poke_type')
-    );
+    // this.$pokeList.append($li);
 
-    this.$pokeList.append($li);
+    var content = JST['pokemonListItem']({ pokemon: pokemon });
+
+    this.$pokeList.append(content);
+
   },
 
   refreshPokemon: function () {
@@ -99,17 +104,20 @@ Pokedex.Views.Pokemon = Backbone.View.extend({
   },
 
   addToyToList: function (toy) {
-    var $li = $("<li class='toy-list-item'>");
-    $li.data('toy-id', toy.escape('id'));
-    $li.data('pokemon-id', toy.escape('pokemon_id'));
+    // var $li = $("<li class='toy-list-item'>");
+    // $li.data('toy-id', toy.escape('id'));
+    // $li.data('pokemon-id', toy.escape('pokemon_id'));
+    //
+    // $li.html(
+    //   "Name: " + toy.escape('name') + "<br>" +
+    //   "Happiness: " + toy.escape('happiness') + "<br>" +
+    //   "Price: " + toy.escape('price')
+    // );
+    //
+    // this.$pokeDetail.find($('ul.toys')).append($li);
 
-    $li.html(
-      "Name: " + toy.escape('name') + "<br>" +
-      "Happiness: " + toy.escape('happiness') + "<br>" +
-      "Price: " + toy.escape('price')
-    );
-
-    this.$pokeDetail.find($('ul.toys')).append($li);
+    var content = JST['toyListItem']({ toy: toy });
+    this.$pokeDetail.find($('ul.toys')).append($(content));
   },
 
   renderToyDetail: function (toy) {
